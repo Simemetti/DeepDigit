@@ -1,6 +1,4 @@
 from PIL import Image, ImageFilter
-from matplotlib import pyplot as plt
-
 
 def imageprepare(argv):
     """
