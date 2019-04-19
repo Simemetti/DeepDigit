@@ -1,22 +1,19 @@
 import pickle
 import imgConv
+import image_slicer
 
 network_file = open("network.pickle", "rb")
 net = pickle.load(network_file)
 
-data = imgConv.imageprepare("image.png")
-for i in range(784):
-    data[i] = [data[i]]
+image_slicer.slice('image.jpg', 4)
 
-"""
-newArr = [[0 for d in range(28)] for y in range(28)]
-k = 0
-for i in range(28):
-    for j in range(28):
-        newArr[i][j] = data[k][0]
-        k = k+1
+data = []
+data.append(imgConv.imageprepare("image_01_01.png"))
+data.append(imgConv.imageprepare("image_01_02.png"))
+data.append(imgConv.imageprepare("image_02_01.png"))
+data.append(imgConv.imageprepare("image_02_02.png"))
 
-plt.imshow(newArr, interpolation='nearest')
-plt.show()"""
-
-print("Guess: " + str(net.guess(data)))
+for single_data in data:
+    for i in range(784):
+        single_data[i] = [single_data[i]]
+    print("Guess: " + str(net.guess(single_data)))
