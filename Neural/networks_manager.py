@@ -7,7 +7,7 @@ def guess(data):
         network_file = open("Networks/network"+str(i)+".pickle", "rb")
         net = pickle.load(network_file)
         guess = net.guess(data)
-        print(guess)
+        #print(guess)
         found = False
         for key in answers:
             if key == guess:

@@ -4,9 +4,8 @@ from digit_splitter import split_digits
 from networks_manager import guess
 
 im = Image.open('image.jpg').convert('L')
-pix = im.load()
 
-images = split_digits(im,pix,4)
+images = split_digits(im,4)
 data = []
 
 for single_image in images:
