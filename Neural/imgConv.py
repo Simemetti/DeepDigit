@@ -5,7 +5,8 @@ def imageprepare(argv):
     This function returns the pixel values.
     The imput is a png file location.
     """
-    im = Image.open(argv).convert('L')
+    im = argv
+    #im = Image.open(argv).convert('L')
     width = float(im.size[0])
     height = float(im.size[1])
     newImage = Image.new('L', (28, 28), (255))  # creates white canvas of 28x28 pixels
