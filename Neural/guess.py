@@ -1,10 +1,15 @@
 from PIL import Image
 
+import sys
 import imgConv
 from digit_splitter import split_digits
 from networks_manager import guess
 
-im = Image.open('image.jpg').convert('L')
+if len(sys.argv) == 1:
+    path = "image.jpg"
+else:
+    path = sys.argv[1]
+im = Image.open(path).convert('L')
 
 images = split_digits(im)
 data = []
