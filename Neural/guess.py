@@ -11,7 +11,6 @@ data = []
 
 for single_image in images:
     if single_image != " ":
-        single_image.show()
         data.append(imgConv.imageprepare(single_image))
     else:
         data.append(" ")
