@@ -1,22 +1,28 @@
-import pickle
+from PIL import Image
+
 import imgConv
+from digit_splitter import split_digits
+from networks_manager import guess
 
-network_file = open("network.pickle", "rb")
-net = pickle.load(network_file)
+im = Image.open('image.jpg').convert('L')
 
-data = imgConv.imageprepare("image.png")
-for i in range(784):
-    data[i] = [data[i]]
+images = split_digits(im)
+data = []
 
-"""
-newArr = [[0 for d in range(28)] for y in range(28)]
-k = 0
-for i in range(28):
-    for j in range(28):
-        newArr[i][j] = data[k][0]
-        k = k+1
+for single_image in images:
+    if single_image != " ":
+        single_image.show()
+        data.append(imgConv.imageprepare(single_image))
+    else:
+        data.append(" ")
+answer = ""
 
-plt.imshow(newArr, interpolation='nearest')
-plt.show()"""
+for single_data in data:
+    if single_data != " ":
+        for i in range(784):
+            single_data[i] = [single_data[i]]
+        answer = answer + str(guess(single_data))
+    else:
+        answer = answer + " "
 
-print("Guess: " + str(net.guess(data)))
+print('\U0001F914' + " my guess is " + answer)
